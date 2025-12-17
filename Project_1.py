@@ -34,8 +34,8 @@ class Game:
         """
         Инициализирует окно и игровые переменные.
 
-        :param root: Корневое окно tkinterinter.
-        :type root: tkinter.tkinter
+        :param root: Корневое окно Tkinter.
+        :type root: tkinter.Tk
         """
         self.root = root
         self.root.title("Виселица")
