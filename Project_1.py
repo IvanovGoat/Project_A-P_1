@@ -1,8 +1,10 @@
 import tkinter
+import tkinter.messagebox
 import random
 
 WORDS = [
-    "кот", "дом", "лес", "мост", "свет", "лодка", "пирог", "яблоко",
+    # "кот"
+    "мост", "свет", "лодка", "пирог", "яблоко",
     "машина", "стол", "ручка", "книга", "звезда", "планета", "огонь",
     "время", "птица", "рыба", "небо", "ветер", "солнце", "луна",
     "окно", "дверь", "стена", "поле", "река", "гора", "лиса"
@@ -43,7 +45,11 @@ class Game:
         try:
             self.word = get_random_word()
         except ValueError:
-            self.word = "ошибка"
+            tkinter.messagebox.showerror(
+                "Критическая ошибка",
+                "Список слов не содержит подходящих вариантов (длина 4–8 букв)"
+            )
+            self.root.destroy()
 
         self.guessed_letters = set()
         self.used_letters = set()
@@ -172,7 +178,11 @@ class Game:
         try:
             self.word = get_random_word()
         except ValueError:
-            self.word = "ошибка"
+            tkinter.messagebox.showerror(
+                "Критическая ошибка",
+                "Список слов не содержит подходящих вариантов (длина 4–8 букв)"
+            )
+            self.root.destroy()
 
         self.guessed_letters.clear()
         self.used_letters.clear()
