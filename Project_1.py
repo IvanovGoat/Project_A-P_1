@@ -145,3 +145,45 @@ class Game:
         self.word_label.config(text=displayed)
         self.attempts_label.config(text=f"Попыток: {self.attempts_left}")
         self.check_game_end()
+
+    def check_game_end(self):
+        """
+        Проверяет, завершена ли игра: победа (все буквы угаданы) или поражение (попытки закончились).
+        Устанавливает флаг game_over при завершении.
+        """
+        if all(letter in self.guessed_letters for letter in self.word):
+            self.result_label.config(text="ПОБЕДА!")
+            self.game_over = True
+        elif self.attempts_left <= 0:
+            self.result_label.config(text=f"ПОРАЖЕНИЕ! Слово: {self.word.upper()}")
+            self.game_over = True
+        else:
+            self.result_label.config(text="")
+
+    def reset_game(self):
+        """
+        Сбрасывает игру: выбирает новое слово, очищает состояния,
+        снимает зачёркивание с букв алфавита и обновляет интерфейс.
+        """
+        try:
+            self.word = get_random_word()
+        except ValueError as e:
+            self.word = "ошибка"
+            print(f"Ошибка при сбросе: {e}")
+
+        self.guessed_letters.clear()
+        self.used_letters.clear()
+        self.attempts_left = 5
+        self.game_over = False
+
+        for lbl in self.alphabet_labels.values():
+            lbl.config(font=("Courier", 11))
+
+        self.update_display()
+        self.result_label.config(text="")
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    Game(root)
+    root.mainloop()
