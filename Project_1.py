@@ -28,7 +28,42 @@ def get_random_word():
 
 
 class Game:
-    """Класс, реализующий логику и интерфейс игры 'Виселица'."""
+    """
+    Класс для управления игрой "Виселица" в графическом интерфейсе Tkinter.
+
+    :ivar root: Корневое окно Tkinter.
+    :type root: tk.Tk
+
+    :ivar word: Загаданное слово.
+    :type word: str
+
+    :ivar guessed_letters: Множество угаданных букв.
+    :type guessed_letters: set[str]
+
+    :ivar used_letters: Множество всех использованных букв.
+    :type used_letters: set[str]
+
+    :ivar attempts_left: Оставшееся количество попыток.
+    :type attempts_left: int
+
+    :ivar game_over: Флаг, указывающий, завершена ли игра.
+    :type game_over: bool
+
+    :ivar alphabet_labels: Словарь, связывающий букву алфавита с её меткой на экране.
+    :type alphabet_labels: dict[str, tk.Label]
+
+    :ivar word_label: Метка для отображения загаданного слова.
+    :type word_label: tk.Label
+
+    :ivar attempts_label: Метка для отображения количества оставшихся попыток.
+    :type attempts_label: tk.Label
+
+    :ivar result_label: Метка для отображения результата игры.
+    :type result_label: tk.Label
+
+    :ivar reset_button: Кнопка "Заново", сбрасывающая игру.
+    :type reset_button: tk.Button
+    """
 
     def __init__(self, root):
         """
@@ -89,7 +124,7 @@ class Game:
         )
         self.reset_button.pack(pady=10)
 
-        right = tkinter.Frame(main, relief="sunken", borderwidth=1)
+        right = tkinter.Frame(main)
         right.pack(side="right", fill="y", padx=(20, 0))
 
         tkinter.Label(
