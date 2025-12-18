@@ -19,7 +19,7 @@ def test_get_random_word_in_list():
 
 def test_get_random_word_negative():
     original = Project_1.WORDS.copy()
-    Project_1.WORDS = ["а", "бы", "в"]
+    Project_1.WORDS = ["кот"]
     try:
         Project_1.get_random_word()
         assert False, "Expected ValueError"
